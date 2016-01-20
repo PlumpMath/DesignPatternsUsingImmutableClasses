@@ -8,7 +8,7 @@ namespace Strategy
 {
     public static class ListExtensions
     {
-        public static string Stringify(this List<int> list)
+        public static string Stringify(this IReadOnlyList<int> list)
         {
             return list.Count > 0 ? 
                 list.First() + list.Skip(1).Aggregate("", (acc, val) => acc + ", " + val) 
@@ -16,7 +16,7 @@ namespace Strategy
                 string.Empty;
         }
 
-        public static string StringifyOpt(this List<int> list)
+        public static string StringifyOpt(this IReadOnlyList<int> list)
         {
             return list.Count <= 0 ? string.Empty :
                 list.First() + list.Skip(1)
