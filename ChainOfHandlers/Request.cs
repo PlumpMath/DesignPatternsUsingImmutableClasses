@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ChainOfResponsibility
+namespace ChainOfHandlers
 {
-    internal class Request : IRequest
+    public class Request : IRequest
     {
         private readonly string data;
 

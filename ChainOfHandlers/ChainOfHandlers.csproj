@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{903C0D34-1340-49D7-946B-009964721BE6}</ProjectGuid>
+    <ProjectGuid>{97E60FA1-C171-431C-A62B-9E887F35490C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ChainOfResponsibility</RootNamespace>
@@ -43,10 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChainOfResponsibilityFactory.cs" />
+    <Compile Include="ChainOfHandlers.cs" />
     <Compile Include="OnlySmallLettersHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request.cs" />
     <Compile Include="StartWithBigLetterRequestHandler.cs" />
     <Compile Include="UnhandledRequestHandler.cs" />
   </ItemGroup>
