@@ -10,13 +10,18 @@ namespace Strategy
     {
         public static string Stringify(this List<int> list)
         {
-            if (list.Count <= 0)
-            {
-                return string.Empty;
-            }
+            return list.Count > 0 ? 
+                list.First() + list.Skip(1).Aggregate("", (acc, val) => acc + ", " + val) 
+                : 
+                string.Empty;
+        }
 
-            return list.First() 
-                    + list.Skip(1).Aggregate("", (acc, val) => acc + ", " + val);
+        public static string StringifyOpt(this List<int> list)
+        {
+            return list.Count <= 0 ? string.Empty :
+                list.First() + list.Skip(1)
+                            .Aggregate(new StringBuilder(), (acc, v) => acc.Append(" ,").Append(v))
+                            .ToString();
         }
     }
 }
