@@ -26,7 +26,12 @@ namespace Builder
             var left_arm = Builder.CreateRobotArm();
             var right_arm = Builder.CreateRobotArm();
             var platform = Builder.CreateRobotPlatform();
-            return new Robot() { head, left_arm, right_arm, platform};
+            return 
+                new Robot()
+                .With(head)
+                .With(left_arm)
+                .With(right_arm)
+                .With(platform);
         }
     }
 }

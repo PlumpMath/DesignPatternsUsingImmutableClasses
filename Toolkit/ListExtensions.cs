@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Builder
+namespace Toolkit
 {
     public static class ListExtensions
     {

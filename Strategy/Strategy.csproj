@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="DescendingSortStrategy.cs" />
     <Compile Include="ISortingStrategy.cs" />
-    <Compile Include="ListExtensions.cs" />
     <Compile Include="NotActuallySortedStrategy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -54,6 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Toolkit\Toolkit.csproj">
+      <Project>{4459264e-6e4e-4e17-afd5-63cc610169bf}</Project>
+      <Name>Toolkit</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

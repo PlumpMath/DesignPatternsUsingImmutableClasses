@@ -5,10 +5,9 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using System.Reflection;
 
-namespace Composite
+namespace Toolkit
 {
     public static class DeepCloneExtension
     {

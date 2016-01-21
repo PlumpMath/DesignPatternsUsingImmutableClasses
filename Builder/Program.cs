@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Toolkit;
 
 namespace Builder
 {
@@ -13,6 +14,7 @@ namespace Builder
              var eng = new Engineer()
                         .WithRobotBuilder(new SteelRobotBuilder())
                         .CreateRobot()
+                        .GetRobotElements()
                         .Stringify("\n");
             Console.WriteLine("Robot:");
             Console.WriteLine(eng);
