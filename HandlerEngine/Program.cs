@@ -10,7 +10,7 @@ namespace ChainOfHandlers
     {
         static void Main(string[] args)
         {
-            var cor = new ChainOfHandlers()
+            var cor = new HandlersEngine()
                             .AddHandler(new OnlySmallLettersHandler())
                             .AddHandler(new StartWithBigLetterRequestHandler())
                             .AddHandler(new UnhandledRequestHandler());

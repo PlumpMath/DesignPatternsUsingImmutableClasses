@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainOfHandlers", "ChainOfHandlers\ChainOfHandlers.csproj", "{97E60FA1-C171-431C-A62B-9E887F35490C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandlerEngine", "HandlerEngine\HandlerEngine.csproj", "{97E60FA1-C171-431C-A62B-9E887F35490C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "State", "State\State.csproj", "{6788EB95-04D5-4582-A1B4-989F7F93FFD0}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Composite", "Composite\Composite.csproj", "{23BF1DFF-73AC-45DA-9807-F4A3BDA21B9B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainOfResponsibility", "ChainOfResponsibility\ChainOfResponsibility.csproj", "{903C0D34-1340-49D7-946B-009964721BE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memento", "Memento\Memento.csproj", "{BBAD4A53-5D12-4038-8B8B-804683011395}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{903C0D34-1340-49D7-946B-009964721BE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{903C0D34-1340-49D7-946B-009964721BE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{903C0D34-1340-49D7-946B-009964721BE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBAD4A53-5D12-4038-8B8B-804683011395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBAD4A53-5D12-4038-8B8B-804683011395}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBAD4A53-5D12-4038-8B8B-804683011395}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBAD4A53-5D12-4038-8B8B-804683011395}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

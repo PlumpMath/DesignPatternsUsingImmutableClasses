@@ -16,14 +16,14 @@ namespace ChainOfHandlers
         string Data { get; }
     }
 
-    public class ChainOfHandlers
+    public class HandlersEngine
     {
         private readonly IList<IHandler> Handlers = new List<IHandler>();
 
-        public ChainOfHandlers() {
+        public HandlersEngine() {
         }
 
-        private ChainOfHandlers(IList<IHandler> handlers)
+        private HandlersEngine(IList<IHandler> handlers)
         {
             Handlers = handlers;
         }
@@ -33,11 +33,11 @@ namespace ChainOfHandlers
             Handlers.Any(handler => handler.Handle(request));
         }
 
-        public ChainOfHandlers AddHandler(IHandler handler)
+        public HandlersEngine AddHandler(IHandler handler)
         {
             var handlers = new List<IHandler>(Handlers);
                 handlers.Add(handler);
-            return new ChainOfHandlers(handlers);
+            return new HandlersEngine(handlers);
         }
     }
 }
