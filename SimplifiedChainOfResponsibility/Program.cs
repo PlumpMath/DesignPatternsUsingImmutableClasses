@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChainHandlers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,13 @@ namespace SimplifiedChainOfResponsibility
     {
         static void Main(string[] args)
         {
-            var funcBasedLoggingHandler = new FuncbasedHandler((request) =>
-            {
-                Console.WriteLine($"Logging handler-> {(string.IsNullOrEmpty(request?.Data) ? "EMPTY MSG" : request.Data)}");
-                return false;
-            });
+            var funcBasedLoggingHandler = new FuncbasedHandler(
+                (request) => false,
+                (request) =>
+                {
+                    Console.WriteLine($"Logging handler-> {(string.IsNullOrEmpty(request?.Data) ? "EMPTY MSG" : request.Data)}");
+                });
+
             var cor = new ChainOfResponsibility()
                             .AddHandler(new OnlySmallLettersHandler())
                             .AddHandler(new StartWithBigLetterRequestHandler())

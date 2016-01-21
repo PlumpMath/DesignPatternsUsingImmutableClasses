@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimplifiedChainOfResponsibility
+namespace ChainHandlers
 {
     public class OnlySmallLettersHandler : IHandler
     {
-        private bool CanHandle(IRequest request)
+        public bool CanHandle(IRequest request)
         {
             return request != null
                    &&
@@ -20,12 +20,9 @@ namespace SimplifiedChainOfResponsibility
                     .All(c => c.ToString().ToLower() == c.ToString());
         }
 
-        public bool Handle(IRequest request)
+        public void Handle(IRequest request)
         {
-            if (!CanHandle(request)) return false;
-
-            Console.WriteLine($"Request handled in OnlySmallLettersHandler: {request.Data}");
-            return true;
+           Console.WriteLine("Request handled in OnlySmallLettersHandler");
         }
     }
 }

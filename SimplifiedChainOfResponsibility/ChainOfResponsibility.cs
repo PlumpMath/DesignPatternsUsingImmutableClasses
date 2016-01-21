@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChainHandlers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,17 @@ namespace SimplifiedChainOfResponsibility
 
         public void Handle(IRequest request)
         {
-            Handlers.Any(handler => handler.Handle(request));
+            Handlers.Any(handler => {
+                if (handler.CanHandle(request))
+                {
+                    handler.Handle(request);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                });
         }
 
     }

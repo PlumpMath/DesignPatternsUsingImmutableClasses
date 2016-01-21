@@ -4,14 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChainOfResponsibility
+namespace ChainHandlers
 {
     public class UnhandledRequestHandler : IHandler
     {
-        public bool Handle(IRequest request)
+        public bool CanHandle(IRequest request)
         {
-            Console.WriteLine("Request unhandled");
             return true;
         }
+
+        public void Handle(IRequest request)
+        {
+            Console.WriteLine("Request unhandled");
+        }
+        
     }
 }

@@ -43,15 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChainHandler.cs" />
     <Compile Include="ChainOfResponsibilityFactory.cs" />
-    <Compile Include="OnlySmallLettersHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StartWithBigLetterRequestHandler.cs" />
-    <Compile Include="UnhandledRequestHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChainHandlers\ChainHandlers.csproj">
+      <Project>{575a9685-26d0-4dd5-9cf3-d04130c9ae29}</Project>
+      <Name>ChainHandlers</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

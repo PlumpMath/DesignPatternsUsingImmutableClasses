@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{97E60FA1-C171-431C-A62B-9E887F35490C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{575A9685-26D0-4DD5-9CF3-D04130C9AE29}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SimplifiedChainOfResponsibility</RootNamespace>
-    <AssemblyName>SimplifiedChainOfResponsibility</AssemblyName>
+    <RootNamespace>ChainHandlers</RootNamespace>
+    <AssemblyName>ChainHandlers</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,18 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChainOfResponsibility.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="FuncbasedHandler.cs" />
+    <Compile Include="IHandler.cs" />
+    <Compile Include="IRequest.cs" />
+    <Compile Include="OnlySmallLettersHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ChainHandlers\ChainHandlers.csproj">
-      <Project>{575a9685-26d0-4dd5-9cf3-d04130c9ae29}</Project>
-      <Name>ChainHandlers</Name>
-    </ProjectReference>
+    <Compile Include="Request.cs" />
+    <Compile Include="StartWithBigLetterRequestHandler.cs" />
+    <Compile Include="UnhandledRequestHandler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
