@@ -11,7 +11,7 @@ namespace Strategy
     {
         static void Main(string[] args)
         {
-            var listToSort = new List<int>() { 1, 3, 5, 4, 3, 3, 19};
+            IReadOnlyList<int> listToSort = new List<int>() { 1, 3, 5, 4, 3, 3, 19};
             var sorter = new Sorter();
 
             var sorted = sorter

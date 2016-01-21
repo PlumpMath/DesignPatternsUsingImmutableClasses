@@ -10,7 +10,7 @@ namespace SimplifiedChainOfResponsibility
 {
     public class ChainOfResponsibility
     {
-        IList<IHandler> Handlers = new List<IHandler>();
+        IReadOnlyCollection<IHandler> Handlers = new List<IHandler>();
 
         public ChainOfResponsibility() { }
         public ChainOfResponsibility(IReadOnlyCollection<IHandler> handlers)

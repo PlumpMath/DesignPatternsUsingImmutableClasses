@@ -10,15 +10,15 @@ namespace Composite
     public class Composite : IComposite
     {
 
-        private readonly IList<IComponent> Children = new List<IComponent>();
+        private readonly IReadOnlyCollection<IComponent> Children = new List<IComponent>();
 
         public Composite()
         {
         }
 
-        public Composite(IList<IComponent> children)
+        public Composite(IReadOnlyCollection<IComponent> children)
         {
-            Children = children;
+            Children = new List<IComponent>(children);
         }
 
         public int GetValue
@@ -31,7 +31,7 @@ namespace Composite
 
         public IComposite AddChild(IComponent component)
         {
-            var children = Children.DeepClone();
+            var children = new List<IComponent>(Children.DeepClone());
             children.Add(component);
             return new Composite(children);
         }

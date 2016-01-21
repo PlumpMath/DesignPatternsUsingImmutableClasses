@@ -9,12 +9,12 @@ namespace ChainOfResponsibility
 {
     public class ChainOfResponsibilityFactory
     {
-        private readonly IList<IHandler> Handlers = new List<IHandler>();
+        private readonly IReadOnlyCollection<IHandler> Handlers = new List<IHandler>();
 
         public ChainOfResponsibilityFactory(){}
         public ChainOfResponsibilityFactory(IList<IHandler> handlers)
         {
-            Handlers = handlers;
+            Handlers = new List<IHandler>(handlers);
         }
 
         public ChainOfResponsibilityFactory AddHandler(IHandler handler)
