@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ChainOfHandlers
+namespace SimplifiedChainOfResponsibility
 {
     public class Request : IRequest
     {

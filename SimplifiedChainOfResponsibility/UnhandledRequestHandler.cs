@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChainOfHandlers
+namespace SimplifiedChainOfResponsibility
 {
     public class UnhandledRequestHandler : IHandler
     {
         public bool Handle(IRequest request)
         {
-            Console.WriteLine("Request unhandled");
+            Console.WriteLine($"Request unhandled: {(string.IsNullOrEmpty(request?.Data) ? "EMPTY MSG" : request.Data)}");
             return true;
         }
     }

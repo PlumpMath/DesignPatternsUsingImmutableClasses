@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChainOfHandlers
+namespace SimplifiedChainOfResponsibility
 {
-    public class StartWithBigLetterRequestHandler : IHandler
+    public class OnlySmallLettersHandler : IHandler
     {
         private bool CanHandle(IRequest request)
         {
@@ -14,14 +14,17 @@ namespace ChainOfHandlers
                    &&
                    !string.IsNullOrEmpty(request.Data)
                    &&
-                   request.Data[0].ToString().ToUpper() == request.Data[0].ToString();
+                   request
+                    .Data
+                    .ToList()
+                    .All(c => c.ToString().ToLower() == c.ToString());
         }
 
         public bool Handle(IRequest request)
         {
             if (!CanHandle(request)) return false;
 
-            Console.WriteLine("Request handled in StartWithBigLetterHandler");
+            Console.WriteLine($"Request handled in OnlySmallLettersHandler: {request.Data}");
             return true;
         }
     }

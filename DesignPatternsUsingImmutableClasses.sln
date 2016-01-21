@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandlerEngine", "HandlerEngine\HandlerEngine.csproj", "{97E60FA1-C171-431C-A62B-9E887F35490C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplifiedChainOfResponsibility", "SimplifiedChainOfResponsibility\SimplifiedChainOfResponsibility.csproj", "{97E60FA1-C171-431C-A62B-9E887F35490C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "State", "State\State.csproj", "{6788EB95-04D5-4582-A1B4-989F7F93FFD0}"
 EndProject

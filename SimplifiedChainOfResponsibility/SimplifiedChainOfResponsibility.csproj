@@ -7,8 +7,8 @@
     <ProjectGuid>{97E60FA1-C171-431C-A62B-9E887F35490C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChainOfResponsibility</RootNamespace>
-    <AssemblyName>ChainOfResponsibility</AssemblyName>
+    <RootNamespace>SimplifiedChainOfResponsibility</RootNamespace>
+    <AssemblyName>SimplifiedChainOfResponsibility</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,7 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChainOfHandlers.cs" />
+    <Compile Include="FuncbasedHandler.cs" />
+    <Compile Include="IHandler.cs" />
+    <Compile Include="ChainOfResponsibility.cs" />
+    <Compile Include="IRequest.cs" />
     <Compile Include="OnlySmallLettersHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
