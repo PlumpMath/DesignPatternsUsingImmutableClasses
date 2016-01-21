@@ -3,4 +3,4 @@ Ever wondered how design patterns would look like if we use only immutable data 
 
 Code in this repository is strictly experimental!
 
-In addition to standard patterns (Builder, CoR, Composite, Memento, State, Strategy) there is also a "Handler Engine" implementation. It's more like a Rules Engine pattern proposed by Martin Fowler.
+In addition to standard patterns (Builder, CoR, Composite, Memento, State, Strategy) there is also a "Simplified CoR" implementation. It uses Any linq operator. It is not full CoR pattern, but still can be useful.
