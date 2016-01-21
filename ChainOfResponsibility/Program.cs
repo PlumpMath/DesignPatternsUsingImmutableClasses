@@ -20,14 +20,14 @@ namespace ChainOfResponsibility
             Console.ReadLine();
         }
 
-        private static void SendRequests(ChainHandler cor)
+        private static void SendRequests(IHandler cor)
         {
             cor.Handle(new Request("all_small_letters_request"));
             cor.Handle(new Request("FirstIsBigRequest"));
             cor.Handle(new Request(null));
         }
 
-        private static ChainHandler MakeChain(FuncbasedHandler funcBasedLoggingHandler)
+        private static IHandler MakeChain(FuncbasedHandler funcBasedLoggingHandler)
         {
             return new ChainHandler(new OnlySmallLettersHandler())
                                 .SetNextHandler(
@@ -41,7 +41,7 @@ namespace ChainOfResponsibility
                                         );
         }
 
-        private static ChainHandler MakeChainUsingFactory(FuncbasedHandler funcBasedLoggingHandler)
+        private static IHandler MakeChainUsingFactory(FuncbasedHandler funcBasedLoggingHandler)
         {
             return new ChainOfResponsibilityFactory()
                                     .AddHandler(new OnlySmallLettersHandler())

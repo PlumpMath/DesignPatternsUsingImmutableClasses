@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChainOfResponsibility
 {
-    public class ChainHandler
+    public class ChainHandler : IHandler
     {
         private readonly IHandler Handler;
         private readonly ChainHandler NextHandler;
@@ -21,6 +21,12 @@ namespace ChainOfResponsibility
         {
             Handler = handler;
             NextHandler = nextHandler;
+        }
+
+        public bool CanHandle(IRequest request)
+        {
+            return Handler.CanHandle(request) || 
+                NextHandler != null ? NextHandler.CanHandle(request) : false;
         }
 
         public void Handle(IRequest request)

@@ -24,7 +24,7 @@ namespace ChainOfResponsibility
             return new ChainOfResponsibilityFactory(handlers);
         }
 
-        public ChainHandler CreateChainOfResponsibility()
+        public IHandler CreateChainOfResponsibility()
         {
             return Handlers.Reverse().Aggregate(
                 new List<ChainHandler>(),
