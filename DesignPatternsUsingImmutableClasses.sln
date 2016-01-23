@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainHandlers", "ChainHandl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toolkit", "Toolkit\Toolkit.csproj", "{4459264E-6E4E-4E17-AFD5-63CC610169BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iterator", "Iterator\Iterator.csproj", "{35AA0C82-BB58-412C-B469-DC53A1C2E663}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{4459264E-6E4E-4E17-AFD5-63CC610169BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4459264E-6E4E-4E17-AFD5-63CC610169BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4459264E-6E4E-4E17-AFD5-63CC610169BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35AA0C82-BB58-412C-B469-DC53A1C2E663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35AA0C82-BB58-412C-B469-DC53A1C2E663}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35AA0C82-BB58-412C-B469-DC53A1C2E663}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35AA0C82-BB58-412C-B469-DC53A1C2E663}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,10 +8,11 @@ namespace Toolkit
 {
     public static class ListExtensions
     {
-        public static string Stringify<T>(this IReadOnlyList<T> list, string separator = ", ", Func<T, string> printElemFunc = null)
+        public static string Stringify<T>(this IReadOnlyList<T> list, Func<T, string> printElemFunc = null, string separator = ", ")
         {
             return list.Count > 0 ?
-                list.First() + list.Skip(1).Aggregate("", (acc, val) => acc + separator + (printElemFunc != null ? printElemFunc(val) : val.ToString()))
+                (printElemFunc != null ? printElemFunc(list.First()) : list.First().ToString())
+                + list.Skip(1).Aggregate("", (acc, val) => acc + separator + (printElemFunc != null ? printElemFunc(val) : val.ToString()))
                 :
                 string.Empty;
         }

@@ -1,35 +1,80 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using System.Reflection;
+using System.Linq;
 
 namespace Toolkit
 {
     public static class DeepCloneExtension
     {
-        public static T DeepClone<T>(this T obj)
-            where T : class
+        private class ReferenceEqualityComparer : EqualityComparer<Object>
         {
-            //Shallow copy
-            MethodInfo memberwiseCloneMethod = obj.GetType().GetMethod("MemberwiseClone",
-                BindingFlags.NonPublic | BindingFlags.Instance);
-            var returnData = (T)memberwiseCloneMethod.Invoke(obj, new object[] { });
-            
-            Type type = returnData.GetType();
-            //Make deep copy of each field
-            FieldInfo[] fieldInfoArray = type.GetFields();
-            foreach (FieldInfo fieldInfo in fieldInfoArray)
+            public override bool Equals(object x, object y)
             {
-                object sourceFieldValue = fieldInfo.GetValue(obj);
-                var sourceData = sourceFieldValue;
-                fieldInfo.SetValue(returnData, sourceData.DeepClone());
+                return ReferenceEquals(x, y);
             }
-            return returnData;
+            public override int GetHashCode(object obj)
+            {
+                if (obj == null) return 0;
+                return obj.GetHashCode();
+            }
         }
 
+        private static readonly MethodInfo CloneMethod = typeof(Object).GetMethod("MemberwiseClone", BindingFlags.NonPublic | BindingFlags.Instance);
+
+        public static bool IsPrimitive(this Type type)
+        {
+            if (type == typeof(String)) return true;
+            return (type.IsValueType & type.IsPrimitive);
+        }
+
+        public static T DeepClone<T>(this T originalObject)
+        {
+            return (T)InternalCopy(originalObject, new Dictionary<Object, Object>(new ReferenceEqualityComparer()));
+        }
+        private static Object InternalCopy(Object originalObject, IDictionary<Object, Object> visited)
+        {
+            if (originalObject == null) return null;
+            var typeToReflect = originalObject.GetType();
+            if (IsPrimitive(typeToReflect)) return originalObject;
+            if (visited.ContainsKey(originalObject)) return visited[originalObject];
+            if (typeof(Delegate).IsAssignableFrom(typeToReflect)) return null;
+            var cloneObject = CloneMethod.Invoke(originalObject, null);
+            if (typeToReflect.IsArray)
+            {
+                var arrayType = typeToReflect.GetElementType();
+                if (IsPrimitive(arrayType) == false)
+                {
+                    Array clonedArray = (Array)cloneObject;
+                    clonedArray.ForEach((array, indices) => array.SetValue(InternalCopy(clonedArray.GetValue(indices), visited), indices));
+                }
+
+            }
+            visited.Add(originalObject, cloneObject);
+            CopyFields(originalObject, visited, cloneObject, typeToReflect);
+            RecursiveCopyBaseTypePrivateFields(originalObject, visited, cloneObject, typeToReflect);
+            return cloneObject;
+        }
+
+        private static void RecursiveCopyBaseTypePrivateFields(object originalObject, IDictionary<object, object> visited, object cloneObject, Type typeToReflect)
+        {
+            if (typeToReflect.BaseType != null)
+            {
+                RecursiveCopyBaseTypePrivateFields(originalObject, visited, cloneObject, typeToReflect.BaseType);
+                CopyFields(originalObject, visited, cloneObject, typeToReflect.BaseType, BindingFlags.Instance | BindingFlags.NonPublic, info => info.IsPrivate);
+            }
+        }
+
+        private static void CopyFields(object originalObject, IDictionary<object, object> visited, object cloneObject, Type typeToReflect, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.FlattenHierarchy, Func<FieldInfo, bool> filter = null)
+        {
+            foreach (FieldInfo fieldInfo in typeToReflect.GetFields(bindingFlags))
+            {
+                if (filter != null && filter(fieldInfo) == false) continue;
+                if (IsPrimitive(fieldInfo.FieldType)) continue;
+                var originalFieldValue = fieldInfo.GetValue(originalObject);
+                var clonedFieldValue = InternalCopy(originalFieldValue, visited);
+                fieldInfo.SetValue(cloneObject, clonedFieldValue);
+            }
+        }
     }
 }

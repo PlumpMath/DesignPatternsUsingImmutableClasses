@@ -15,7 +15,7 @@ namespace Builder
                         .WithRobotBuilder(new SteelRobotBuilder())
                         .CreateRobot()
                         .GetRobotElements()
-                        .Stringify("\n");
+                        .Stringify((e)=>e, "\n");
             Console.WriteLine("Robot:");
             Console.WriteLine(eng);
             Console.ReadLine();
