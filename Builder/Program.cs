@@ -12,13 +12,14 @@ namespace Builder
     {
         static void Main(string[] args)
         {
-             var eng = new Engineer()
-                        .WithRobotBuilder(new SteelRobotBuilder())
-                        .CreateRobot()
-                        .GetRobotElements()
+             var eng = new RobotEngineer()
+                        .WithBuilder(new RobotBuilder())
+                        .CreateProduct();
+            var robotStr = (eng as Robot)?.GetRobotElements()
                         .Stringify((e)=>e, "\n");
+
             Console.WriteLine("Robot:");
-            Console.WriteLine(eng);
+            Console.WriteLine(robotStr);
             Console.ReadLine();
             
         }

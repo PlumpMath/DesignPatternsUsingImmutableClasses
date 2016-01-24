@@ -40,10 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builder\Engineer.cs" />
-    <Compile Include="Builder\IRobotBuilder.cs" />
-    <Compile Include="Builder\Robot.cs" />
-    <Compile Include="Builder\SteelRobotBuilder.cs" />
+    <Compile Include="Builder\IEngineer.cs" />
+    <Compile Include="Builder\IBuilder.cs" />
+    <Compile Include="Builder\IProduct.cs" />
     <Compile Include="ChainOfResponsibility\ChainHandler.cs" />
     <Compile Include="ChainOfResponsibility\ChainOfResponsibility.cs" />
     <Compile Include="ChainOfResponsibility\ChainOfResponsibilityFactory.cs" />
