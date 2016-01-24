@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PatternLibrary.Tests
 {
-    class StrategyTests
+    public class StrategyTests
     {
     }
 }

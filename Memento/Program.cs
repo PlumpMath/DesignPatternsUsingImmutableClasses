@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using PatternLibrary.Logging;
 using PatternLibrary.Memento;
 
 namespace Memento
@@ -8,28 +9,29 @@ namespace Memento
     {
         static void Main()
         {
-            Console.WriteLine("First sequence");
+            ILogger logger = new ConsoleLogger();
+            logger.WriteLine("First sequence");
             var seqGen = Enumerable.Range(0, 10).Aggregate(
                 new FibSequence(),
                 (seqGenerator, iter) => {
-                    Console.WriteLine(seqGenerator.Value);
+                    logger.WriteLine(seqGenerator.Value);
                     return seqGenerator.Next();
                 });
             var memento = ((ISaveable)seqGen).GetMemento();
             
-            Console.WriteLine("Second sequence[continued]");
+            logger.WriteLine("Second sequence[continued]");
             Enumerable.Range(0, 10).Aggregate(
                 seqGen,
                 (seqGenerator, iter) => {
-                    Console.WriteLine(seqGenerator.Value);
+                    logger.WriteLine(seqGenerator.Value);
                     return seqGenerator.Next();
                 });
 
-            Console.WriteLine("Third sequence[from memento - should be like 2nd]");
+            logger.WriteLine("Third sequence[from memento - should be like 2nd]");
             Enumerable.Range(0, 10).Aggregate(
                 new FibSequence(memento),
                 (seqGenerator, iter) => {
-                    Console.WriteLine(seqGenerator.Value);
+                    logger.WriteLine(seqGenerator.Value);
                     return seqGenerator.Next();
                 });
             Console.ReadLine();

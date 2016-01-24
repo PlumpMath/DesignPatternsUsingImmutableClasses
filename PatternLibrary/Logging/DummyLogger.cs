@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace PatternLibrary.Logging
 {
-    public interface ILogger
+    public class DummyLogger : ILogger
     {
-        void WriteLine(object message);
+        public void WriteLine(object message)
+        {
+        }
     }
 }

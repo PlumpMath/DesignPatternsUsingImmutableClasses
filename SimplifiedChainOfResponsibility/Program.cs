@@ -1,6 +1,7 @@
 ﻿using System;
 using PatternLibrary.ChainOfResponsibility;
 using PatternLibrary.Handlers;
+using PatternLibrary.Logging;
 
 namespace SimplifiedChainOfResponsibility
 {
@@ -8,18 +9,19 @@ namespace SimplifiedChainOfResponsibility
     {
         static void Main()
         {
+            ILogger logger = new ConsoleLogger();
             var funcBasedLoggingHandler = new FuncbasedHandler(
                 request => false,
                 request =>
                 {
-                    Console.WriteLine($"Logging handler-> {(string.IsNullOrEmpty(request?.Data) ? "EMPTY MSG" : request.Data)}");
+                    logger.WriteLine($"Logging handler-> {(string.IsNullOrEmpty(request?.Data) ? "EMPTY MSG" : request.Data)}");
                 });
 
             var cor = new ChainOfResponsibility()
-                            .AddHandler(new OnlySmallLettersHandler())
-                            .AddHandler(new StartWithBigLetterRequestHandler())
+                            .AddHandler(new OnlySmallLettersHandler(logger))
+                            .AddHandler(new StartWithBigLetterRequestHandler(logger))
                             .AddHandler(funcBasedLoggingHandler)
-                            .AddHandler(new UnhandledRequestHandler());
+                            .AddHandler(new UnhandledRequestHandler(logger));
 
             cor.Handle(new Request("all_small_letters_request"));
             cor.Handle(new Request("FirstIsBigRequest"));

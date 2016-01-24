@@ -64,9 +64,17 @@
     <Compile Include="StrategyTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Iterator\Iterator.csproj">
-      <Project>{35AA0C82-BB58-412C-B469-DC53A1C2E663}</Project>
-      <Name>Iterator</Name>
+    <ProjectReference Include="..\Builder\Builder.csproj">
+      <Project>{c6dc2110-da60-4545-a224-e1af46533b1b}</Project>
+      <Name>Builder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PatternLibrary\PatternLibrary.csproj">
+      <Project>{d088c5d8-30b6-4fe1-8ca7-45322d8b8214}</Project>
+      <Name>PatternLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Toolkit\Toolkit.csproj">
+      <Project>{4459264e-6e4e-4e17-afd5-63cc610169bf}</Project>
+      <Name>Toolkit</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -1,5 +1,6 @@
 ﻿using State.Robot;
 using System;
+using PatternLibrary.Logging;
 
 namespace State
 {
@@ -7,7 +8,8 @@ namespace State
     {
         static void Main()
         {
-            var robot = new StandingRobot();
+            ILogger logger = new ConsoleLogger();
+            var robot = new StandingRobot(logger);
 
             robot
                 .Perform("Walk")

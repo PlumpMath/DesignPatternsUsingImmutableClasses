@@ -59,6 +59,7 @@
     <Compile Include="ImmutableObjectConvention\ImmutableObjectConvention.cs" />
     <Compile Include="Iterator\ImmutableList.cs" />
     <Compile Include="Logging\ConsoleLogger.cs" />
+    <Compile Include="Logging\DummyLogger.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Memento\IMemento.cs" />
     <Compile Include="Memento\ISaveable.cs" />

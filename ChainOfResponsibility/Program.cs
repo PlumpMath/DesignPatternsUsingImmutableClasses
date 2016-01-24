@@ -1,6 +1,7 @@
 ﻿using System;
 using PatternLibrary.ChainOfResponsibility;
 using PatternLibrary.Handlers;
+using PatternLibrary.Logging;
 
 namespace ChainOfResponsibility
 {
@@ -8,15 +9,16 @@ namespace ChainOfResponsibility
     {
         static void Main()
         {
+            ILogger logger = new ConsoleLogger();
             var funcBasedLoggingHandler = new FuncbasedHandler(
                 request => false,
                 request =>
                 {
-                    Console.WriteLine($"Logging handler-> {(string.IsNullOrEmpty(request?.Data) ? "EMPTY MSG" : request.Data)}");
+                    logger.WriteLine($"Logging handler-> {(string.IsNullOrEmpty(request?.Data) ? "EMPTY MSG" : request.Data)}");
                 });
 
-            SendRequests(MakeChain(funcBasedLoggingHandler));
-            SendRequests(MakeChainUsingFactory(funcBasedLoggingHandler));
+            SendRequests(MakeChain(funcBasedLoggingHandler, logger));
+            SendRequests(MakeChainUsingFactory(funcBasedLoggingHandler, logger));
 
             Console.ReadLine();
         }
@@ -28,27 +30,27 @@ namespace ChainOfResponsibility
             cor.Handle(new Request(null));
         }
 
-        private static IHandler MakeChain(IHandler funcLoggingHandler)
+        private static IHandler MakeChain(IHandler funcLoggingHandler, ILogger logger)
         {
-            return new ChainHandler(new OnlySmallLettersHandler())
+            return new ChainHandler(new OnlySmallLettersHandler(logger))
                                 .SetNextHandler(
-                                    new ChainHandler(new StartWithBigLetterRequestHandler())
+                                    new ChainHandler(new StartWithBigLetterRequestHandler(logger))
                                         .SetNextHandler(
                                             new ChainHandler(funcLoggingHandler)
                                                 .SetNextHandler(
-                                                    new ChainHandler(new UnhandledRequestHandler())
+                                                    new ChainHandler(new UnhandledRequestHandler(logger))
                                                 )
                                             )
                                         );
         }
 
-        private static IHandler MakeChainUsingFactory(IHandler funcBasedLoggingHandler)
+        private static IHandler MakeChainUsingFactory(IHandler funcBasedLoggingHandler, ILogger logger)
         {
             return new ChainOfResponsibilityFactory()
-                                    .AddHandler(new OnlySmallLettersHandler())
-                                    .AddHandler(new StartWithBigLetterRequestHandler())
+                                    .AddHandler(new OnlySmallLettersHandler(logger))
+                                    .AddHandler(new StartWithBigLetterRequestHandler(logger))
                                     .AddHandler(funcBasedLoggingHandler)
-                                    .AddHandler(new UnhandledRequestHandler())
+                                    .AddHandler(new UnhandledRequestHandler(logger))
                                     .CreateChainOfResponsibility();
             
         }

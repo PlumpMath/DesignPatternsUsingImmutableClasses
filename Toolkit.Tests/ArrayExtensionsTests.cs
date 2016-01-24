@@ -14,7 +14,8 @@ namespace Toolkit.Tests
         [TestMethod()]
         public void ForEachTest()
         {
-            Assert.Fail();
+            int[] ints = {1, 2, 3, 4, 5};
+            ints.ForEach((array, intis)=> {});
         }
     }
 }

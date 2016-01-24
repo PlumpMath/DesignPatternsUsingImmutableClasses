@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PatternLibrary.Logging;
 using PatternLibrary.State;
 
 namespace State.Robot
@@ -11,25 +12,29 @@ namespace State.Robot
     {
         public override int Speed => 0;
 
+        public StandingRobot(ILogger logger = null) : base(logger)
+        {
+        }
+
         public override IStateMachine Perform(string command)
         {
             switch (command)
             {
                 case "Run":
-                    Console.WriteLine("Running!!!");
-                    return new RunningRobot();
+                    _logger.WriteLine("Running!!!");
+                    return new RunningRobot(_logger);
                 case "Walk":
-                    Console.WriteLine("Walking...");
-                    return new WalkingRobot();
+                    _logger.WriteLine("Walking...");
+                    return new WalkingRobot(_logger);
                 case "Stand":
-                    Console.WriteLine("I am standing, right?");
-                    return new StandingRobot();
+                    _logger.WriteLine("I am standing, right?");
+                    return new StandingRobot(_logger);
                 case "Crawl":
-                    Console.WriteLine("Getting on my kness!");
-                    return new CrawlingRobot();
+                    _logger.WriteLine("Getting on my kness!");
+                    return new CrawlingRobot(_logger);
                 default:
-                    Console.WriteLine("Eeeeem, should I do what?");
-                    return new ConfusedRobot();
+                    _logger.WriteLine("Eeeeem, should I do what?");
+                    return new ConfusedRobot(_logger);
             }
         }
     }

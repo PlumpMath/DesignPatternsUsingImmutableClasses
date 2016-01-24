@@ -1,4 +1,5 @@
 ﻿using System;
+using PatternLibrary.Logging;
 using PatternLibrary.State;
 
 namespace State.Robot
@@ -6,26 +7,28 @@ namespace State.Robot
     internal class RunningRobot : AbstractRobot
     {
         public override int Speed => 10;
-        
+        public RunningRobot(ILogger logger = null) : base(logger)
+        {
+        }
         public override IStateMachine Perform(string command)
         {
             switch (command)
             {
                 case "Run":
-                    Console.WriteLine("I'm already running, bro!");
-                    return new RunningRobot();
+                    _logger.WriteLine("I'm already running, bro!");
+                    return new RunningRobot(_logger);
                 case "Walk":
-                    Console.WriteLine("Ok, chill, walking now.");
-                    return new WalkingRobot();
+                    _logger.WriteLine("Ok, chill, walking now.");
+                    return new WalkingRobot(_logger);
                 case "Stand":
-                    Console.WriteLine("Chill, standing now.");
-                    return new StandingRobot();
+                    _logger.WriteLine("Chill, standing now.");
+                    return new StandingRobot(_logger);
                 case "Crawl":
-                    Console.WriteLine("Then run, now crawl, decide dude...");
-                    return new CrawlingRobot();
+                    _logger.WriteLine("Then run, now crawl, decide dude...");
+                    return new CrawlingRobot(_logger);
                 default:
-                    Console.WriteLine("Eeeeem, should I do what?");
-                    return new ConfusedRobot();
+                    _logger.WriteLine("Eeeeem, should I do what?");
+                    return new ConfusedRobot(_logger);
             }
         }
     }
