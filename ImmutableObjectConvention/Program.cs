@@ -40,7 +40,7 @@ namespace ImmutableObjectConvention
         public static void Main()
         {
             try {
-                new ImmutableObjectConventionTest<MutableObject>().Test();
+                new ImmutableObjectConventionTest().Test<MutableObject>();
             }
             catch(Exception e)
             {

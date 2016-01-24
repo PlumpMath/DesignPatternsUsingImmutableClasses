@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatternLibrary.Tests", "Pat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toolkit.Tests", "Toolkit.Tests\Toolkit.Tests.csproj", "{611C8684-C9B5-4EDB-BC62-4DA9D7690FEE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConventionTests", "ConventionTests\ConventionTests.csproj", "{797B53C2-3F7D-41B7-9F93-0395B51A2C4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{611C8684-C9B5-4EDB-BC62-4DA9D7690FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{611C8684-C9B5-4EDB-BC62-4DA9D7690FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{611C8684-C9B5-4EDB-BC62-4DA9D7690FEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{797B53C2-3F7D-41B7-9F93-0395B51A2C4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{797B53C2-3F7D-41B7-9F93-0395B51A2C4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{797B53C2-3F7D-41B7-9F93-0395B51A2C4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{797B53C2-3F7D-41B7-9F93-0395B51A2C4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
