@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PatternLibrary.Strategy;
 using Strategy.Strategies;
 using Toolkit;
@@ -11,7 +8,7 @@ namespace Strategy
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             IReadOnlyList<int> listToSort = new List<int>() { 1, 3, 5, 4, 3, 3, 19};
             var sorter = new Sorter();

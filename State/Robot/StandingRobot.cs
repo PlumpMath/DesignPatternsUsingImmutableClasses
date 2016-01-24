@@ -9,13 +9,7 @@ namespace State.Robot
 {
     internal class StandingRobot : AbstractRobot
     {
-        public override int Speed
-        {
-            get
-            {
-                return 0;
-            }
-        }
+        public override int Speed => 0;
 
         public override IStateMachine Perform(string command)
         {

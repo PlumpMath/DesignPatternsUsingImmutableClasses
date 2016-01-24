@@ -4,13 +4,13 @@ using PatternLibrary.Handlers;
 
 namespace ChainOfResponsibility
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var funcBasedLoggingHandler = new FuncbasedHandler(
-                (request) => false,
-                (request) =>
+                request => false,
+                request =>
                 {
                     Console.WriteLine($"Logging handler-> {(string.IsNullOrEmpty(request?.Data) ? "EMPTY MSG" : request.Data)}");
                 });
@@ -28,13 +28,13 @@ namespace ChainOfResponsibility
             cor.Handle(new Request(null));
         }
 
-        private static IHandler MakeChain(FuncbasedHandler funcBasedLoggingHandler)
+        private static IHandler MakeChain(IHandler funcLoggingHandler)
         {
             return new ChainHandler(new OnlySmallLettersHandler())
                                 .SetNextHandler(
                                     new ChainHandler(new StartWithBigLetterRequestHandler())
                                         .SetNextHandler(
-                                            new ChainHandler(funcBasedLoggingHandler)
+                                            new ChainHandler(funcLoggingHandler)
                                                 .SetNextHandler(
                                                     new ChainHandler(new UnhandledRequestHandler())
                                                 )
@@ -42,7 +42,7 @@ namespace ChainOfResponsibility
                                         );
         }
 
-        private static IHandler MakeChainUsingFactory(FuncbasedHandler funcBasedLoggingHandler)
+        private static IHandler MakeChainUsingFactory(IHandler funcBasedLoggingHandler)
         {
             return new ChainOfResponsibilityFactory()
                                     .AddHandler(new OnlySmallLettersHandler())

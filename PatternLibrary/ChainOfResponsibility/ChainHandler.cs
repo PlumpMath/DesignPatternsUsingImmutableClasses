@@ -4,38 +4,40 @@ namespace PatternLibrary.ChainOfResponsibility
 {
     public class ChainHandler : IHandler
     {
-        private readonly IHandler Handler;
-        private readonly ChainHandler NextHandler;
+        private readonly IHandler _handler;
+        private readonly ChainHandler _nextHandler;
 
         public ChainHandler(IHandler handler)
         {
-            Handler = handler;
+            _handler = handler;
         }
 
         public ChainHandler(IHandler handler, ChainHandler nextHandler)
         {
-            Handler = handler;
-            NextHandler = nextHandler;
+            _handler = handler;
+            _nextHandler = nextHandler;
         }
 
         public bool CanHandle(IRequest request)
         {
-            return Handler.CanHandle(request) || 
-                NextHandler != null ? NextHandler.CanHandle(request) : false;
+            var canHandle = _handler.CanHandle(request);
+            return canHandle || 
+                (_nextHandler?.CanHandle(request) ?? false);
+                                
         }
 
         public void Handle(IRequest request)
         {
-            if (Handler.CanHandle(request))
+            if (_handler.CanHandle(request))
             {
-                Handler.Handle(request);
+                _handler.Handle(request);
             }
-            else NextHandler.Handle(request);
+            else _nextHandler.Handle(request);
         }
 
         public ChainHandler SetNextHandler(ChainHandler nextHandler)
         {
-            return new ChainHandler(Handler, nextHandler);
+            return new ChainHandler(_handler, nextHandler);
         }
     }
 }

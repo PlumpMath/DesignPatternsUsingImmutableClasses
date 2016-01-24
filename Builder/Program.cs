@@ -8,7 +8,7 @@ using Toolkit;
 
 namespace Builder
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {

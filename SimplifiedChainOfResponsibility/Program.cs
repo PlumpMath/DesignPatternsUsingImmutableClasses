@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PatternLibrary.ChainOfResponsibility;
 using PatternLibrary.Handlers;
 
 namespace SimplifiedChainOfResponsibility
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var funcBasedLoggingHandler = new FuncbasedHandler(
-                (request) => false,
-                (request) =>
+                request => false,
+                request =>
                 {
                     Console.WriteLine($"Logging handler-> {(string.IsNullOrEmpty(request?.Data) ? "EMPTY MSG" : request.Data)}");
                 });

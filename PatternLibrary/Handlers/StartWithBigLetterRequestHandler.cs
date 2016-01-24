@@ -6,11 +6,11 @@ namespace PatternLibrary.Handlers
     {
         public bool CanHandle(IRequest request)
         {
-            return request != null
-                   &&
-                   !string.IsNullOrEmpty(request.Data)
-                   &&
-                   request.Data[0].ToString().ToUpper() == request.Data[0].ToString();
+            var data = request?.Data;
+            var firstLetter = data?[0];
+            if (firstLetter != null)
+                return firstLetter.ToString().ToUpper() == firstLetter.ToString();
+            return false;
         }
 
         public void Handle(IRequest request)

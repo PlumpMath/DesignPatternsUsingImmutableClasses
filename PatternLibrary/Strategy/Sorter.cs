@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using Toolkit;
 
 namespace PatternLibrary.Strategy
 {
     public class Sorter
     {
-        private readonly ISortingStrategy SortingStrategy;
+        private readonly ISortingStrategy _sortingStrategy;
 
         public Sorter()
         {
@@ -12,7 +13,7 @@ namespace PatternLibrary.Strategy
 
         public Sorter(ISortingStrategy sortingStrategy)
         {
-            SortingStrategy = sortingStrategy;
+            _sortingStrategy = sortingStrategy;
         }
 
         public Sorter WithSortingStrategy(ISortingStrategy sortingStrategy)
@@ -20,9 +21,11 @@ namespace PatternLibrary.Strategy
             return new Sorter(sortingStrategy);
         }
 
-        public List<int> Sort(IReadOnlyList<int> arrayToSort)
+        public IReadOnlyList<int> Sort(IEnumerable<int> arrayToSort)
         {
-            return SortingStrategy.Sort(arrayToSort);
+            return _sortingStrategy
+                        .Sort(arrayToSort)
+                        .DeepClone();
         }
     }
 }

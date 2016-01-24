@@ -1,6 +1,4 @@
-﻿using System.CodeDom;
-
-namespace PatternLibrary.Builder
+﻿namespace PatternLibrary.Builder
 {
     public interface IEngineer
     {

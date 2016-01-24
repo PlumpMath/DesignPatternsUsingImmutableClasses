@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Toolkit;
 
 namespace PatternLibrary.Iterator
@@ -7,31 +8,19 @@ namespace PatternLibrary.Iterator
     public class ImmutableList<T> : IReadOnlyList<T>
         where T : class
     {
-        IReadOnlyList<T> List;
-        public ImmutableList(IReadOnlyList<T> list)
+        private readonly IReadOnlyList<T> _list;
+        public ImmutableList(IEnumerable<T> list)
         {
-            List = list.DeepClone();
+            _list = list.ToList().DeepClone();
         }
 
-        public T this[int index]
-        {
-            get
-            {
-                return List[index].DeepClone();
-            }
-        }
+        public T this[int index] => _list[index].DeepClone();
 
-        public int Count
-        {
-            get
-            {
-                return List.Count;
-            }
-        }
+        public int Count => _list.Count;
 
         public IEnumerator<T> GetEnumerator()
         {
-            foreach(var elem in List)
+            foreach(var elem in _list)
             {
                 yield return elem.DeepClone();
             }

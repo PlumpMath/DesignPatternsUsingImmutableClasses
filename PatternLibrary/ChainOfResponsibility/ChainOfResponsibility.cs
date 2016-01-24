@@ -1,39 +1,32 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using PatternLibrary.Handlers;
+using Toolkit;
 
 namespace PatternLibrary.ChainOfResponsibility
 {
     public class ChainOfResponsibility
     {
-        IReadOnlyCollection<IHandler> Handlers = new List<IHandler>();
+        private readonly IReadOnlyCollection<IHandler> _handlers = new List<IHandler>();
 
         public ChainOfResponsibility() { }
-        public ChainOfResponsibility(IReadOnlyCollection<IHandler> handlers)
+        public ChainOfResponsibility(IEnumerable<IHandler> handlers)
         {
-            Handlers = new List<IHandler>(handlers);
+            _handlers = new List<IHandler>(handlers);
         }
 
         public ChainOfResponsibility AddHandler(IHandler handler)
         {
-            var newHandlers = new List<IHandler>(Handlers);
+            var newHandlers = _handlers.ToList().DeepClone();
             newHandlers.Add(handler);
             return new ChainOfResponsibility(newHandlers);
         }
 
         public void Handle(IRequest request)
         {
-            Handlers.Any(handler => {
-                if (handler.CanHandle(request))
-                {
-                    handler.Handle(request);
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-                });
+            var firstHandler = _handlers
+                .FirstOrDefault(handler => handler.CanHandle(request));
+            firstHandler?.Handle(request);
         }
 
     }

@@ -5,14 +5,8 @@ namespace State.Robot
 {
     internal class CrawlingRobot : AbstractRobot
     {
-        public override int Speed
-        {
-            get
-            {
-                return 2;
-            }
-        }
-
+        public override int Speed => 2;
+        
         public override IStateMachine Perform(string command)
         {
             switch (command)

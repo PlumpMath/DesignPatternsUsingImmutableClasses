@@ -1,30 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Builder.Parts;
 using PatternLibrary.Builder;
+using Toolkit;
 
 namespace Builder
 {
     public class Robot : IProduct
     {
-        IReadOnlyCollection<string> Elements = new List<string>();
+        private readonly IReadOnlyCollection<string> _elements = new List<string>();
 
         public Robot(){ }
-        public Robot(IReadOnlyCollection<string> elements)
+        public Robot(IEnumerable<string> elements)
         {
-            Elements = new List<string>(elements);
+            _elements = elements.ToList().DeepClone();
         }
 
         public Robot With(string element)
         {
-            var newList = new List<string>(Elements);
+            var newList = _elements.ToList().DeepClone();
             newList.Add(element);
             return new Robot(newList);
         }
 
-        public IReadOnlyList<string> GetRobotElements()
+        public IReadOnlyCollection<string> GetRobotElements()
         {
-            return new List<string>(Elements);
+            return _elements.DeepClone();
         }
 
         public Robot WithHead(RobotHead head)

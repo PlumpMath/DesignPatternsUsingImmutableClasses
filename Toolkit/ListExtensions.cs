@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Toolkit
 {
     public static class ListExtensions
     {
-        public static string Stringify<T>(this IReadOnlyList<T> list, Func<T, string> printElemFunc = null, string separator = ", ")
+        public static string Stringify<T>(this IReadOnlyCollection<T> list, Func<T, string> printElemFunc = null, string separator = ", ")
         {
-            return list.Count > 0 ?
-                (printElemFunc != null ? printElemFunc(list.First()) : list.First().ToString())
-                + list.Skip(1).Aggregate("", (acc, val) => acc + separator + (printElemFunc != null ? printElemFunc(val) : val.ToString()))
-                :
-                string.Empty;
+            if (list.Count <= 0) return string.Empty;
+            //use sentinel function if none has been provided
+            var printFunc = printElemFunc ?? 
+                            (elem => elem.ToString());
+
+            var head = printFunc(list.First());
+            var tail = list
+                .Skip(1)
+                .Aggregate("", (acc, val) => acc + separator + printFunc(val));
+            return head + tail;
         }
     }
 }

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PatternLibrary.ImmutableObjectConvention;
 
-namespace ImmutableObjectPattern
+namespace ImmutableObjectConvention
 {
     public class Program
     {
@@ -35,7 +32,7 @@ namespace ImmutableObjectPattern
             //public const string PUBLIC_CONST_STRING = "PublicConstString";
             //private const string PRIVATE_CONST_STRING = "PrivateConstString";
 
-            public static readonly string PUBLIC_STATIC_READONLY_STRING = "Const";
+            public static readonly string PublicStaticReadonlyString = "Const";
             public readonly string PublicReadOnlyStringField = "PublicReadOnlyStringField";
             private readonly string PrivateReadOnlyStringField = "PrivateReadOnlyStringField";
         }

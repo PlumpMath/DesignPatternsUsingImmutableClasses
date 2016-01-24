@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PatternLibrary.Memento;
 
 namespace Memento
@@ -19,37 +15,42 @@ namespace Memento
                 B = b;
             }
         }
-        public int Value { get { return B; } }
-        private readonly int A;
-        private readonly int B;
+
+        public int Value => _b;
+        private readonly int _a;
+        private readonly int _b;
 
         public FibSequence()
         {
-            A = 1;
-            B = 1;
+            _a = 1;
+            _b = 1;
         }
 
         public FibSequence(IMemento memento)
         {
+            if (memento == null)
+                throw new ArgumentNullException("Memento is null");
             var mem = (memento as FibSequenceMemento);
-            A = mem.A;
-            B = mem.B;
+            if(mem == null)
+                throw new ArgumentException($"Memento's type mismatch: {memento.GetType().Name}");
+            _a = mem.A;
+            _b = mem.B;
         }
 
         private FibSequence(int a, int b)
         {
-            A = a;
-            B = b;
+            _a = a;
+            _b = b;
         }
 
         public FibSequence Next()
         {
-            return new FibSequence(B, A+B);
+            return new FibSequence(_b, _a+_b);
         }
 
         public IMemento GetMemento()
         {
-            return new FibSequenceMemento(A, B);
+            return new FibSequenceMemento(_a, _b);
         }
 
         public T FromMemento<T>(IMemento memento) where T : ISaveable

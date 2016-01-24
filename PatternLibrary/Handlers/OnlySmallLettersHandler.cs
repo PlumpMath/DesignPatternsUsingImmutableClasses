@@ -7,14 +7,11 @@ namespace PatternLibrary.Handlers
     {
         public bool CanHandle(IRequest request)
         {
-            return request != null
-                   &&
-                   !string.IsNullOrEmpty(request.Data)
-                   &&
-                   request
-                    .Data
-                    .ToList()
-                    .All(c => c.ToString().ToLower() == c.ToString());
+            return request?
+                     .Data?
+                     .ToList()
+                     .All(c => c.ToString().ToLower() == c.ToString()) 
+                     ?? false;
         }
 
         public void Handle(IRequest request)

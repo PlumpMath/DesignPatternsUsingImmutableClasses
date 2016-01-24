@@ -2,9 +2,9 @@
 
 namespace Composite
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var root = new Composite()
                 .AddChild(

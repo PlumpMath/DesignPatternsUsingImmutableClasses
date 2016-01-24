@@ -56,6 +56,7 @@
     <Compile Include="Handlers\Request.cs" />
     <Compile Include="Handlers\StartWithBigLetterRequestHandler.cs" />
     <Compile Include="Handlers\UnhandledRequestHandler.cs" />
+    <Compile Include="ImmutableObjectConvention\ImmutableObjectConvention.cs" />
     <Compile Include="Iterator\ImmutableList.cs" />
     <Compile Include="Logging\ConsoleLogger.cs" />
     <Compile Include="Logging\ILogger.cs" />

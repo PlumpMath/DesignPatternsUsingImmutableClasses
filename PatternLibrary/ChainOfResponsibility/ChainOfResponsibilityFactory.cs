@@ -6,24 +6,24 @@ namespace PatternLibrary.ChainOfResponsibility
 {
     public class ChainOfResponsibilityFactory
     {
-        private readonly IReadOnlyCollection<IHandler> Handlers = new List<IHandler>();
+        private readonly IReadOnlyCollection<IHandler> _handlers = new List<IHandler>();
 
         public ChainOfResponsibilityFactory(){}
-        public ChainOfResponsibilityFactory(IReadOnlyCollection<IHandler> handlers)
+        public ChainOfResponsibilityFactory(IEnumerable<IHandler> handlers)
         {
-            Handlers = new List<IHandler>(handlers);
+            _handlers = new List<IHandler>(handlers);
         }
 
         public ChainOfResponsibilityFactory AddHandler(IHandler handler)
         {
-            var handlers = Handlers.ToList();
+            var handlers = _handlers.ToList();
             handlers.Add(handler);
             return new ChainOfResponsibilityFactory(handlers);
         }
 
         public IHandler CreateChainOfResponsibility()
         {
-            return Handlers.Reverse().Aggregate(
+            return _handlers.Reverse().Aggregate(
                 new List<ChainHandler>(),
                 (chain, handler) => {
                     ChainHandler last = null;

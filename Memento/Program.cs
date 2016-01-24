@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PatternLibrary.Memento;
 
 namespace Memento
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine("First sequence");
             var seqGen = Enumerable.Range(0, 10).Aggregate(

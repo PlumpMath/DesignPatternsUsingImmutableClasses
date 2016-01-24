@@ -4,6 +4,6 @@ namespace PatternLibrary.Strategy
 {
     public interface ISortingStrategy
     {
-        List<int> Sort(IReadOnlyList<int> arrayToSort);
+        List<int> Sort(IEnumerable<int> arrayToSort);
     }
 }
