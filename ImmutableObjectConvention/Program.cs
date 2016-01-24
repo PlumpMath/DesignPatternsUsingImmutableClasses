@@ -40,8 +40,7 @@ namespace ImmutableObjectConvention
         public static void Main()
         {
             try {
-                var imop = new ImmutableObjectConventionTest<MutableObject>();
-
+                new ImmutableObjectConventionTest<MutableObject>().Test();
             }
             catch(Exception e)
             {

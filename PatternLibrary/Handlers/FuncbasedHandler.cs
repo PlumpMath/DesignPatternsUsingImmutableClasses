@@ -21,10 +21,5 @@ namespace PatternLibrary.Handlers
         {
             _handler(request);
         }
-
-        void IHandler.Handle(IRequest request)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

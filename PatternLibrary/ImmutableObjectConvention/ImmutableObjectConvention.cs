@@ -6,7 +6,7 @@ namespace PatternLibrary.ImmutableObjectConvention
 {
     public class ImmutableObjectConventionTest<T>
     {
-        static ImmutableObjectConventionTest() {
+        public void Test() {
             var bindingFlags = 
                 BindingFlags.Instance | BindingFlags.Static |
                 BindingFlags.NonPublic | BindingFlags.Public;
@@ -25,7 +25,6 @@ namespace PatternLibrary.ImmutableObjectConvention
             {
                 throw new ArgumentException($"Type argument contains property that is writeable (setter): {propertyInfo.Name}");
             }
-
         }
     }
 }

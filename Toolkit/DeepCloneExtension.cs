@@ -6,7 +6,7 @@ namespace Toolkit
 {
     public static class DeepCloneExtension
     {
-        private class ReferenceEqualityComparer : EqualityComparer<Object>
+        private class ReferenceEqualityComparer : EqualityComparer<object>
         {
             public override bool Equals(object x, object y) => ReferenceEquals(x, y);
 
@@ -16,7 +16,8 @@ namespace Toolkit
             }
         }
 
-        private static readonly MethodInfo CloneMethod = typeof(Object).GetMethod("MemberwiseClone", BindingFlags.NonPublic | BindingFlags.Instance);
+        private static readonly MethodInfo CloneMethod = typeof(object)
+                .GetMethod("MemberwiseClone", BindingFlags.NonPublic | BindingFlags.Instance);
 
         public static bool IsPrimitive(this Type type)
         {
@@ -26,15 +27,27 @@ namespace Toolkit
 
         public static T DeepClone<T>(this T originalObject)
         {
-            return (T)InternalCopy(originalObject, new Dictionary<Object, Object>(new ReferenceEqualityComparer()));
+            return (T)InternalCopy(
+                originalObject, 
+                new Dictionary<object, object>(new ReferenceEqualityComparer())
+                );
         }
-        private static object InternalCopy(object originalObject, IDictionary<Object, Object> visited)
+        private static object InternalCopy(object originalObject, IDictionary<object, object> visited)
         {
-            if (originalObject == null) return null;
+            if (originalObject == null)
+                return null;
             var typeToReflect = originalObject.GetType();
-            if (IsPrimitive(typeToReflect)) return originalObject;
-            if (visited.ContainsKey(originalObject)) return visited[originalObject];
-            if (typeof(Delegate).IsAssignableFrom(typeToReflect)) return null;
+
+            if (IsPrimitive(typeToReflect))
+                return originalObject;
+
+            if (visited.ContainsKey(originalObject))
+                return visited[originalObject];
+
+            //TODO. Check if commenting that out does any harm
+            //if (typeof(Delegate).IsAssignableFrom(typeToReflect))
+            //  return null;
+
             var cloneObject = CloneMethod.Invoke(originalObject, null);
             if (typeToReflect.IsArray)
             {
@@ -42,7 +55,10 @@ namespace Toolkit
                 if (IsPrimitive(arrayType) == false)
                 {
                     var clonedArray = (Array)cloneObject;
-                    clonedArray.ForEach((array, indices) => array.SetValue(InternalCopy(clonedArray.GetValue(indices), visited), indices));
+                    clonedArray.ForEach(
+                        (array, indices) => 
+                                array.SetValue(InternalCopy(clonedArray.GetValue(indices), visited), indices)
+                            );
                 }
 
             }
@@ -52,20 +68,45 @@ namespace Toolkit
             return cloneObject;
         }
 
-        private static void RecursiveCopyBaseTypePrivateFields(object originalObject, IDictionary<object, object> visited, object cloneObject, Type typeToReflect)
+        private static void RecursiveCopyBaseTypePrivateFields(
+            object originalObject, 
+            IDictionary<object, object> visited, 
+            object cloneObject, 
+            Type typeToReflect)
         {
-            if (typeToReflect.BaseType == null) return;
+            if (typeToReflect.BaseType == null)
+                return;
 
-            RecursiveCopyBaseTypePrivateFields(originalObject, visited, cloneObject, typeToReflect.BaseType);
-            CopyFields(originalObject, visited, cloneObject, typeToReflect.BaseType, BindingFlags.Instance | BindingFlags.NonPublic, info => info.IsPrivate);
+            RecursiveCopyBaseTypePrivateFields(
+                originalObject, 
+                visited, 
+                cloneObject, 
+                typeToReflect.BaseType);
+            CopyFields(
+                originalObject, 
+                visited, 
+                cloneObject, 
+                typeToReflect.BaseType, 
+                BindingFlags.Instance | BindingFlags.NonPublic, 
+                info => info.IsPrivate);
         }
 
-        private static void CopyFields(object originalObject, IDictionary<object, object> visited, object cloneObject, Type typeToReflect, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.FlattenHierarchy, Func<FieldInfo, bool> filter = null)
+        private static void CopyFields(
+            object originalObject, 
+            IDictionary<object, object> visited, 
+            object cloneObject,
+            Type typeToReflect, 
+            BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic |
+                                        BindingFlags.Public | BindingFlags.FlattenHierarchy, 
+            Func<FieldInfo, bool> filter = null)
         {
             foreach (var fieldInfo in typeToReflect.GetFields(bindingFlags))
             {
-                if (filter != null && filter(fieldInfo) == false) continue;
-                if (IsPrimitive(fieldInfo.FieldType)) continue;
+                if (filter != null && filter(fieldInfo) == false)
+                    continue;
+                if (IsPrimitive(fieldInfo.FieldType))
+                    continue;
+
                 var originalFieldValue = fieldInfo.GetValue(originalObject);
                 var clonedFieldValue = InternalCopy(originalFieldValue, visited);
                 fieldInfo.SetValue(cloneObject, clonedFieldValue);
