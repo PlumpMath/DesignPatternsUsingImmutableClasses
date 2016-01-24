@@ -43,8 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChainHandler.cs" />
-    <Compile Include="ChainOfResponsibilityFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -52,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ChainHandlers\ChainHandlers.csproj">
-      <Project>{575a9685-26d0-4dd5-9cf3-d04130c9ae29}</Project>
-      <Name>ChainHandlers</Name>
+    <ProjectReference Include="..\PatternLibrary\PatternLibrary.csproj">
+      <Project>{d088c5d8-30b6-4fe1-8ca7-45322d8b8214}</Project>
+      <Name>PatternLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

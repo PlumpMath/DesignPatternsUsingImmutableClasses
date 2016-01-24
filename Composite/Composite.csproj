@@ -43,9 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IComponent.cs" />
-    <Compile Include="IComposite.cs" />
-    <Compile Include="INode.cs" />
     <Compile Include="Composite.cs" />
     <Compile Include="IntNode.cs" />
     <Compile Include="Program.cs" />
@@ -56,6 +53,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PatternLibrary\PatternLibrary.csproj">
+      <Project>{d088c5d8-30b6-4fe1-8ca7-45322d8b8214}</Project>
+      <Name>PatternLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Toolkit\Toolkit.csproj">
       <Project>{4459264e-6e4e-4e17-afd5-63cc610169bf}</Project>
       <Name>Toolkit</Name>

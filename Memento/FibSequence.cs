@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PatternLibrary.Memento;
 
 namespace Memento
 {
-    public class FibSequence
+    public class FibSequence : ISaveable
     {
-        private class FibSequenceMemento : IFibSequenceMemento
+        private class FibSequenceMemento : IMemento
         {
             public readonly int A;
             public readonly int B;
@@ -28,7 +29,7 @@ namespace Memento
             B = 1;
         }
 
-        public FibSequence(IFibSequenceMemento memento)
+        public FibSequence(IMemento memento)
         {
             var mem = (memento as FibSequenceMemento);
             A = mem.A;
@@ -46,9 +47,14 @@ namespace Memento
             return new FibSequence(B, A+B);
         }
 
-        public IFibSequenceMemento GetMemento()
+        public IMemento GetMemento()
         {
             return new FibSequenceMemento(A, B);
+        }
+
+        public T FromMemento<T>(IMemento memento) where T : ISaveable
+        {
+            return (T)(ISaveable)new FibSequence(memento);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using PatternLibrary.State;
 
 namespace State.Robot
 {

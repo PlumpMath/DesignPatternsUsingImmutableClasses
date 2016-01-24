@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PatternLibrary.Memento;
 
 namespace Memento
 {
@@ -17,7 +18,7 @@ namespace Memento
                     Console.WriteLine(seqGenerator.Value);
                     return seqGenerator.Next();
                 });
-            var memento = seqGen.GetMemento();
+            var memento = ((ISaveable)seqGen).GetMemento();
             
             Console.WriteLine("Second sequence[continued]");
             Enumerable.Range(0, 10).Aggregate(

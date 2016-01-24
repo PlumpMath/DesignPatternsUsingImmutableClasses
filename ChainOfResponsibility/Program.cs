@@ -1,5 +1,6 @@
-﻿using ChainHandlers;
-using System;
+﻿using System;
+using PatternLibrary.ChainOfResponsibility;
+using PatternLibrary.Handlers;
 
 namespace ChainOfResponsibility
 {
