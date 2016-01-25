@@ -7,7 +7,7 @@ namespace PatternLibrary.Tests
     public class StateTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void ReturnNextStateOnAction()
         {
         }
     }

@@ -16,7 +16,7 @@ namespace Toolkit.Tests
         {
             var a = 5;
             var b = a.DeepClone();
-            Assert.Equals(a, b);
+            Assert.AreEqual(a, b);
         }
 
         [TestMethod()]
@@ -24,7 +24,7 @@ namespace Toolkit.Tests
         {
             var a = "asdf";
             var b = a.DeepClone();
-            Assert.Equals(a, b);
+            Assert.AreEqual(a, b);
         }
 
         [TestMethod()]
@@ -32,8 +32,6 @@ namespace Toolkit.Tests
         {
             var a = Enumerable
                         .Range(0, 10)
-                        .ToList()
-                        .Cast<string>()
                         .ToList();
             var b = a.DeepClone();
             Assert.IsTrue(a.SequenceEqual(b));
@@ -44,11 +42,9 @@ namespace Toolkit.Tests
         {
             var a = Enumerable
                         .Range(0, 10)
-                        .ToList()
-                        .Cast<string>()
                         .ToList();
             var b = a.DeepClone();
-            b[1] = "test";
+            b[1] = 4;
             Assert.IsFalse(a.SequenceEqual(b));
         }
     }

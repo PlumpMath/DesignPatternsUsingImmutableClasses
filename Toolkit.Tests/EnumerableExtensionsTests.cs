@@ -9,26 +9,27 @@ using System.Threading.Tasks;
 namespace Toolkit.Tests
 {
     [TestClass()]
-    public class ListExtensionsTests
+    public class EnumerableExtensionsTests
     {
         static readonly int[] Ints = { 1, 2, 3, 4, 5, 6 };
 
         [TestMethod()]
         public void StringifyIntsWithDefaultValuePrinter()
         {
-            Assert.AreEqual(Ints.Stringify(), "1 2 3 4 5 6"); 
+            var stringified = Ints.Stringify();
+            Assert.AreEqual("1, 2, 3, 4, 5, 6", stringified); 
         }
 
         [TestMethod()]
         public void StringifyIntsWithCustomValuePrinter()
         {
-            Assert.AreEqual(Ints.Stringify(e=>(e+e).ToString()), "2 4 6 8 10 12");
+            Assert.AreEqual("2, 4, 6, 8, 10, 12", Ints.Stringify(e => (e + e).ToString()));
         }
 
         [TestMethod()]
         public void StringifyIntsWithCustomSeparatorAndCustomPrinter()
         {
-            Assert.AreEqual(Ints.Stringify(e => e+"", "."), "1.2.3.4.5.6");
+            Assert.AreEqual("1.2.3.4.5.6", Ints.Stringify(e => e + "", "."));
         }
     }
 }

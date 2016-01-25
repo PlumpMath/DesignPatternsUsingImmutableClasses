@@ -7,8 +7,9 @@ namespace PatternLibrary.Tests
     public class MementoTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void MementoSaveAndLoad()
         {
+
         }
     }
 }

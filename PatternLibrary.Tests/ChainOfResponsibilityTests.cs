@@ -7,7 +7,17 @@ namespace PatternLibrary.Tests
     public class ChainOfResponsibilityTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void HandleRequestInFirstHandler()
+        {
+        }
+
+        [TestMethod]
+        public void HandleRequestInSecondHandler()
+        {
+        }
+
+        [TestMethod]
+        public void HandleRequestInDeadLetterHandler()
         {
         }
     }

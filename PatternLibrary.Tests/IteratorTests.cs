@@ -7,7 +7,7 @@ namespace PatternLibrary.Tests
     public class IteratorTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void EnumerateImmutableList()
         {
         }
     }

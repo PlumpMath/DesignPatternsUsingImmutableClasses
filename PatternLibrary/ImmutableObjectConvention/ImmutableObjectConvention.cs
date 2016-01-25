@@ -16,14 +16,15 @@ namespace PatternLibrary.ImmutableObjectConvention
                 .GetFields(bindingFlags)
                 .FirstOrDefault(field => !field.IsInitOnly)) != null)
             {
-                throw new ArgumentException($"Type argument contains field that is not readonly: {fieldInfo.Name}");
+                if(!fieldInfo.IsPrivate)
+                    throw new ArgumentException($"Type ({type.FullName}) argument contains field that is not readonly: {fieldInfo.Name}");
             }
             PropertyInfo propertyInfo;
             if ((propertyInfo = type
                 .GetProperties(bindingFlags)
                 .FirstOrDefault(property => property.CanWrite)) != null)
             {
-                throw new ArgumentException($"Type argument contains property that is writeable (setter): {propertyInfo.Name}");
+                throw new ArgumentException($"Type ({type.FullName}) argument contains property that is writeable (setter): {propertyInfo.Name}");
             }
         }
 

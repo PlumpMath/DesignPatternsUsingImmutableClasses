@@ -19,7 +19,7 @@ namespace PatternLibrary.Tests
                         .Stringify();
             var robotStrShouldEquals = new List<string>() { "Steel head", "Steel arm", "Steel arm", "Steel platform"}
             .Stringify();
-            Assert.Equals(robotStr, robotStrShouldEquals);
+            Assert.AreEqual(robotStr, robotStrShouldEquals);
         }
     }
 }
