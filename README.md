@@ -4,4 +4,6 @@ Ever wondered how design patterns would look like if we use only immutable data 
 Consider code from this repository as experimental.
 
 There is also a convention test that checks if type is mutable structure or not.  
-Test your objects if they are really immutable!
+Test your objects if they are really immutable!  
+  
+P.S. Unit tests are very incomplete... I have no excuse for this...
